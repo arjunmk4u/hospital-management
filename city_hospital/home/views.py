@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import departments
 # Create your views here.
 
 def index(request):
@@ -17,4 +18,7 @@ def Contact(request):
     return render(request, 'contact.html')
 
 def departmnet(request):
-    return render(request, 'department.html')
+    dict_dept = {
+        "dept" : departments.objects.all()
+    }
+    return render(request, 'department.html', dict_dept)
