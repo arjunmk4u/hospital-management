@@ -3,5 +3,22 @@
 {%block title%} Doctors {%endblock%}
 
 {%block content%}
-Our Doctors
+<div class="fixed-menu"></div>
+<h1 class="mx-auto w-50 text-center top-0">Our Doctors</h1>
+<hr>
+<div class="container text-center">
+    {% for d in doc%}
+
+    <div class=" card text-center mx-3 my-3 bg-light" style="width: 18rem; display: inline-block;">
+        <img src="{{d.doc_image.url}}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Dr {{d.doc_name}}</h5>
+            <p class="card-text">{{d.doc_spec}}</p>
+            <p class="card-text">{{d.doc_dept}}</p>
+            <a href="#" class="btn btn-primary">Book an Appoinment</a>
+        </div>
+    </div>
+    {%endfor%}
+</div>
+
 {%endblock%}
