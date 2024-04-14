@@ -14,3 +14,16 @@ class doctors(models.Model):
     doc_spec = models.CharField(max_length=100)
     doc_dept = models.ForeignKey(departments, on_delete=models.CASCADE)
     doc_image = models.ImageField(upload_to='doctors')
+
+    def __str__(self):
+        return f"Dr {self.doc_name} - ({self.doc_spec})"
+
+class booking(models.Model):
+    p_name = models.CharField(max_length=255)
+    p_phone = models.CharField(max_length=10)
+    p_email = models.EmailField()
+    doc_name = models.ForeignKey(doctors, on_delete=models.CASCADE)
+    booking_date = models.DateField()
+    booked_on = models.DateField(auto_now=True)
+
+    

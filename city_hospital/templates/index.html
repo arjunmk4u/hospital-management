@@ -6,8 +6,10 @@
 
 {% load static%}
 <div class="home-page ">
-  <h1 class="text-white" id="text">We are committed to your health and well-being</h1>
-  <div class="container">
+  <h1 class="text-white fw-bold" id="text">We are committed to your health and well-being</h1>
+  <div class="button">
+    <a class="btn btn-primary"  href="{% url 'about' %}">Learn More</a>
+    <a class="btn btn-primary"  href="{% url 'booking' %}">Bookings</a>
   </div>
 </div>
 {%endblock%}
