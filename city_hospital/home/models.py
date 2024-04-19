@@ -26,4 +26,8 @@ class booking(models.Model):
     booking_date = models.DateField()
     booked_on = models.DateField(auto_now=True)
 
-    
+class register(models.Model):
+    name = models.CharField(max_length=255)
+    username = models.CharField(primary_key=True, max_length=255)
+    email = models.EmailField()
+    password = models.CharField(max_length=50)

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import departments, doctors
-from .forms import BookingForm
+from .forms import BookingForm, createUser
+from django.contrib.auth.forms import UserCreationForm
 # Create your views here.
 
 def index(request):
@@ -44,3 +45,12 @@ def departmnet(request):
     }
     return render(request, 'department.html', dict_dept)
 
+
+def register(request):
+    form = createUser()
+    context = { 'form' : form}
+    return render(request, 'register.html', context)
+
+
+def login(request):
+    return render(request, 'login.html')

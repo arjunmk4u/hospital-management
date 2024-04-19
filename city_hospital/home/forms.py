@@ -1,6 +1,7 @@
 from django import forms
-
-from .models import booking
+from .models import booking, register
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 class DateInput(forms.DateInput):
     input_type = 'date'
@@ -9,6 +10,8 @@ class BookingForm(forms.ModelForm):
     class Meta:
         model = booking
         fields = '__all__'
+
+        
 
         widgets = {
             'booking_date' : DateInput()
@@ -20,3 +23,8 @@ class BookingForm(forms.ModelForm):
             'doc_name' : "Doctor",
             'booking_date' : "Booking Date"
         }
+
+class createUser(forms.ModelForm):
+    class Meta:
+        model = register
+        fields = '__all__'
