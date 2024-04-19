@@ -4,8 +4,6 @@ from .forms import BookingForm
 # Create your views here.
 
 def index(request):
-    if request.POST.get("aboutbtn"):
-        print('clicked')
     return render(request, 'index.html')
 
 def about(request):
@@ -28,6 +26,13 @@ def Doctors(request):
     dict_doc = {
         "doc" : doctors.objects.all()
     }
+
+    if request.method == "POST":
+        doc = request.POST.get("name")
+        print(doc)
+        return redirect('booking')
+
+
     return render(request, 'doctors.html', dict_doc)
 
 def Contact(request):

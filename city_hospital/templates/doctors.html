@@ -12,10 +12,15 @@
     <div class=" card text-center mx-3 my-3 bg-light" style="width: 18rem; display: inline-block;">
         <img src="{{d.doc_image.url}}" class="card-img-top" alt="...">
         <div class="card-body">
-            <h5 class="card-title">Dr {{d.doc_name}}</h5>
-            <p class="card-text">{{d.doc_spec}}</p>
-            <p class="card-text">{{d.doc_dept}}</p>
-            <a href="#" class="btn btn-primary">Book an Appoinment</a>
+            <form action="" method="post" novalidate>
+                {% csrf_token %}
+                <h5 class="card-title">Dr {{d.doc_name}}</h5>
+                <p class="card-text">{{d.doc_spec}}</p>
+                <p class="card-text">{{d.doc_dept}}</p>
+                <input type="hidden" value="{{d.doc_name}}" name="name">
+                <input class="btn btn-primary" type="submit"  name="book">
+                <!-- <button class="btn btn-primary" type="submit" name="Book">Book an appoinment</button> -->
+            </form>
         </div>
     </div>
     {%endfor%}
