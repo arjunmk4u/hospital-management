@@ -34,8 +34,17 @@ def Booking(request):
 
 def Doctors(request):
     dict_doc = {
-        "doc" : doctors.objects.all()
+        "doc" : doctors.objects.all(),
+        "dep" : None
     }
+
+    if request.method == 'GET':
+        doc_dep = request.session.get('dept_value')
+        doc_dep_name = request.session.get('dept_name')
+        filtered_doc_dept = doctors.objects.filter(doc_dept = doc_dep)
+        print(filtered_doc_dept)
+        dict_doc['doc'] = filtered_doc_dept
+        dict_doc['dep'] = doc_dep_name
 
     if request.method == "POST":
         doc = request.POST.get("doctor_name")
@@ -53,6 +62,13 @@ def departmnet(request):
     dict_dept = {
         "dept" : departments.objects.all()
     }
+    if request.method == 'POST':
+        dept_value = request.POST.get("dept_value")
+        dept_name = request.POST.get("dept_name")
+        print(dept_value)
+        request.session['dept_value'] = dept_value
+        request.session['dept_name'] = dept_name
+        return redirect('doctors')
     return render(request, 'department.html', dict_dept)
 
 
@@ -83,6 +99,8 @@ def login_view(request):
             if user is not None:
                 login(request,user)
                 return redirect('profile')
+            else:
+                messages.info(request, 'Username or password is incorrect')
 
     return render(request, 'login.html', {'form': form})    
 

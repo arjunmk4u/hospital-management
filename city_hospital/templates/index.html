@@ -1,15 +1,18 @@
-{% extends "base.html" %}
-
-{%block title%} Home  {%endblock%}
-
-{%block content%}
-
+{% extends "base.html" %} {%block title%} Home {%endblock%} {%block content%} 
 {% load static%}
-<div class="home-page ">
-  <h1 class="text-white fw-bold" id="text">We are committed to your health and well-being</h1>
+<div class="home-page">
+  <h1 class="text-white fw-bold" id="text">
+    We are committed to your health and well-being
+  </h1>
+  <p class="w-50 text-white">
+    MEDICO is a comprehensive medical website designed to streamline healthcare
+    access for users. With an intuitive interface, MEDICO offers a seamless
+    booking feature, enabling patients to schedule appointments with their
+    preferred doctors effortlessly.
+  </p>
   <div class="button">
-    <a class="btn btn-primary"  href="{% url 'login' %}">Login</a>
-    <a class="btn btn-primary"  href="{% url 'reg' %}">Signup</a>
+    <a class="btn btn-primary rounded-start-3" href="{% url 'login' %}">Login</a>
+    <a class="btn btn-primary rounded-end-3" href="{% url 'reg' %}">Signup</a>
   </div>
 </div>
 {%endblock%}

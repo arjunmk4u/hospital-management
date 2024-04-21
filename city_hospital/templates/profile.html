@@ -5,6 +5,7 @@
 {%block content%}
 
 <h3>Profile</h3>
+<h1>Welcome {{request.user}}</h1>
 <button type="submit" name="action" value="button_clicked">Click Me</button>
 <a href="{% url 'logout' %}">Logout</a>
 

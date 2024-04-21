@@ -12,7 +12,7 @@ class departments(models.Model):
 class doctors(models.Model):
     doc_name = models.CharField(max_length=50)
     doc_spec = models.CharField(max_length=100)
-    doc_dept = models.ForeignKey(departments, on_delete=models.CASCADE)
+    doc_dept = models.ForeignKey(departments, on_delete=models.CASCADE, default=None)
     doc_image = models.ImageField(upload_to='doctors')
 
     def __str__(self):
