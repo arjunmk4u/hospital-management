@@ -5,7 +5,7 @@ The project is done using django, a web framework of python. For the front end s
 
 <br>
 
-Application featurs,
+<h3>Application featurs,</h3>
 <ul>
   <li>A user based authentication system, also guest view</li>
   <li>Book Appoinments for particular doctor </li>
