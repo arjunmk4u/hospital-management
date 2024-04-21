@@ -11,6 +11,10 @@
     <form action="" method="post">
         {% csrf_token %}
         {{form|crispy}}
+        <!-- {%for field in form%}
+        {{form.doc_name}}
+        
+        {%endfor%} -->
         <input class="btn btn-primary" type="submit">
         <hr>
     </form>

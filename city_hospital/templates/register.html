@@ -10,9 +10,28 @@
     <div class="fixed-menu"></div>
     <h1>Register</h1>
     <hr>
-    <form action="">
+    <form action="" method="post">
         {% csrf_token %}
-        {{form|crispy}}
+        <!-- {{form|crispy}} -->
+
+        {{form.username.label}}
+        {{form.username}}
+
+
+        {{form.email.label}}
+        {{form.email}}
+
+        {{form.password1.label}}
+        {{form.password1}}
+
+        {{form.password2.label}}
+        ({{form.password2.help_text}})
+        {{form.password2}} 
+
+        <hr>
+        {% for message in messages %}
+        <p>{{message}}</p>
+        {% endfor %}
         <input class="btn btn-primary" type="submit" value="Register">
     </form>
     <h6>Already have an accound? <a href="{% url 'login' %}">Log in</a></h6>

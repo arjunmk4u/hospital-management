@@ -1,6 +1,37 @@
 {% extends "base.html" %}
-{% block title%} Login {%endblock%}
+{% load crispy_forms_tags %}
+
+{%block title%} Login/SignUp {%endblock%}
 
 {%block content%}
-Login
+
+<div class=" container h-100 w-50">
+
+    <div class="fixed-menu"></div>
+    <h1>Log in</h1>
+    <hr>
+    <form action="" method="post">
+        {% csrf_token %}
+        <!-- {{form|crispy}} -->
+
+        {{form.username.label}}
+        {{form.username}}
+
+
+        {{form.password.label}}
+        {{form.password}}
+        
+
+
+        <hr>
+        {% for message in messages %}
+        <p>{{message}}</p>
+        {% endfor %}
+        <input class="btn btn-primary" type="submit" value="Login">
+    </form>
+    <h6>Don't have an accound? <a href="{% url 'reg' %}">Register</a></h6>
+
+
+</div>
+
 {%endblock%}
