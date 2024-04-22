@@ -16,7 +16,7 @@
     "routes" : [
         {
             "src" : "/(.*)",
-            "dest" : "/"
+            "dest" : "city_hospital/wsgi.py"
         },
         {
             "src" : "/static(.*)",
