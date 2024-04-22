@@ -7,14 +7,35 @@
 <div class="fixed-menu"></div>
 <h2 class="text-center">Make an Appoinment</h2>
 <hr>
-<div class="container w-25 bg-info text-center">
+<div class="container w-25 bg-info text-center rounded-3 shadow">
     <form action="" method="post">
         {% csrf_token %}
-        {{form|crispy}}
+        <!-- {{form|crispy}} -->
+
+        {{form.p_name.label}}
+        {{form.p_name}}
+        
+        {{form.p_email.label}}
+        {{form.p_email}}
+
+
+        {{form.p_phone.label}}
+        {{form.p_phone}}
+
+        {{form.booking_date.label}}
+        {{form.booking_date}}
+
+        {{form.doc_name.label}}
+        {{form.doc_name}}
+
+        {{form.errors}}
         <!-- {%for field in form%}
         {{form.doc_name}}
         
         {%endfor%} -->
+        {% for message in messages %}
+        <p>{{message}}</p>
+        {%endfor%}
         <input class="btn btn-primary" type="submit">
         <hr>
     </form>

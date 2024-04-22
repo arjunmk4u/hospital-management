@@ -1,5 +1,5 @@
 from django import forms
-from .models import booking, register
+from .models import booking
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
@@ -19,7 +19,7 @@ class BookingForm(forms.ModelForm):
         widgets = {
             'booking_date' : DateInput(),
             'doc_name' : docInput(),
-            # 'doc_name': forms.Select(attrs={'readonly': 'readonly'})
+            'doc_name': forms.Select(attrs={'readonly': 'readonly'})
         }
         labels = {
             'p_name' : "Patient Name",
@@ -34,7 +34,7 @@ class BookingForm(forms.ModelForm):
 class createUser(UserCreationForm):
     class Meta:
         model = User
-        fields = ['username','email', 'password1', 'password2']
+        fields = ['username','email', 'password1', 'password2', 'first_name', 'last_name']
 
 
 class userLogin(forms.Form):

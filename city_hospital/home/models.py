@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -19,17 +20,10 @@ class doctors(models.Model):
         return f"Dr {self.doc_name} - ({self.doc_spec})"
 
 class booking(models.Model):
-    p_name = models.CharField(max_length=255)
+    p_name = models.ForeignKey(User, on_delete=models.CASCADE)
     p_phone = models.CharField(max_length=10)
     p_email = models.EmailField()
     doc_name = models.ForeignKey(doctors, on_delete=models.CASCADE)
     booking_date = models.DateField()
     booked_on = models.DateField(auto_now=True)
-
-class register(models.Model):
-    name = models.CharField(max_length=255)
-    username = models.CharField(primary_key=True, max_length=255)
-    email = models.EmailField()
-    password = models.CharField(max_length=50)
-
     

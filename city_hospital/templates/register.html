@@ -14,6 +14,12 @@
         {% csrf_token %}
         <!-- {{form|crispy}} -->
 
+        {{form.first_name.label}}
+        {{form.first_name}}
+
+        {{form.last_name.label}}
+        {{form.last_name}}
+
         {{form.username.label}}
         {{form.username}}
 

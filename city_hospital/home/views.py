@@ -4,6 +4,7 @@ from .forms import BookingForm, createUser, userLogin
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required 
 # Create your views here.
 
 def index(request):
@@ -16,15 +17,23 @@ def Booking(request):
 
     if request.method == 'GET':
         # doc_name = request.GET.get('doctor_name')
-        doc_name = f" Dr {request.session.get('doctor_name')}"
+        doc_name =  request.session.get('doctor_name')
         print(doc_name)
-        form = BookingForm(initial={'doc_name':doc_name})
+        form = BookingForm(
+            initial={
+                'doc_name':doc_name,
+                'p_name': request.user,
+                'p_email':request.user.email
+            })
         return render(request, 'booking.html', {'form': form})
 
     if request.method == 'POST':
         form = BookingForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, f"Appoinment Booked")
+            form = BookingForm()
+
 
     dict_form = {
         'form' : form
@@ -32,6 +41,7 @@ def Booking(request):
     }
     return render(request, 'booking.html', dict_form)
 
+@login_required(login_url= '/login')
 def Doctors(request):
     dict_doc = {
         "doc" : doctors.objects.all(),
@@ -105,6 +115,7 @@ def login_view(request):
     return render(request, 'login.html', {'form': form})    
 
 
+@login_required(login_url= '/login')
 def profile(request):
     return render(request, "profile.html")
 
