@@ -1,0 +1,69 @@
+{%extends "base.html" %} {%block title%} My bookings {%endblock%} 
+
+{%block content%}
+<div class="fixed-menu"></div>
+<div class="container">
+  <div class="card card-body container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Phone</th>
+          <th scope="col">Doctor</th>
+          <th scope="col">Booking date</th>
+          <th scope="col">Booked on</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {%for item in data%}
+        <tr>
+          <th scope="row">{{forloop.counter}}</th>
+          <td>{{item.p_name}}</td>
+          <td>{{item.p_email}}</td>
+          <td>{{item.p_phone}}</td>
+          <td>{{item.doc_name}}</td>
+          <td>{{item.booking_date}}</td>
+          <td>{{item.booked_on}}</td>
+          <!-- <td><a class="btn btn-primary" href="{% url 'editbooking' item.id %}">Edit</a></td> -->
+          <td>
+            <form action="{% url 'editbooking' item.id %}">
+              <input
+                id="editbtn"
+                class="btn btn-primary"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseExample"
+                aria-expanded="false"
+                aria-controls="collapseExample"
+                type="submit"
+                value="Edit"
+              />
+            </form>
+          </td>
+          <td>
+            <a class="btn btn-danger" href="{% url 'delete' item.id %}"
+              >Delete</a
+            >
+          </td>
+        </tr>
+        {%endfor%}
+      </tbody>
+    </table>
+    <table class="table container">
+      <tr>
+        <form action="">
+          <td><input id="pname" type="text" value="{{edit_data.p_name}}" /></td>
+          <td><input type="text" value="{{edit_data.p_email}}" /></td>
+          <td><input type="text" value="{{edit_data.p_phone}}" /></td>
+          <td><input type="text" value="{{edit_data.doc_name}}" /></td>
+          <td><input type="text" value="{{edit_data.booking_date}}" /></td>
+          <td><input type="submit" /></td>
+        </form>
+      </tr>
+    </table>
+  </div>
+</div>
+
+{%endblock%}

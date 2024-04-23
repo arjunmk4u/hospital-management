@@ -1,14 +1,19 @@
 from django.shortcuts import render, redirect
-from .models import departments, doctors
+from .models import departments, doctors, booking
 from .forms import BookingForm, createUser, userLogin
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required 
+from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 # Create your views here.
 
+
 def index(request):
-    return render(request, 'index.html')
+    if request.user.is_authenticated:
+        return redirect('profile')
+    else:
+        return render(request, 'index.html')
 
 def about(request):
     return render(request, 'about.html')
@@ -119,6 +124,23 @@ def login_view(request):
 def profile(request):
     return render(request, "profile.html")
 
+@login_required(login_url='login')
+def viewBooking(request):
+    data = booking.objects.all().filter(p_name = request.user)
+    for field in data:
+        print(field)
+    return render(request, 'userbookings.html', {'data' : data})
+
+def deleteBooking(request, did):
+    booking.objects.get(id= did).delete()
+    return redirect('userbookings')
+
+def editBooking(request, eid):
+    edit_data = booking.objects.get(id= eid)
+    return render(request, 'userbookings.html', {'edit_data': edit_data})
+
+
 def logoutUser(request):
     logout(request)
-    return redirect('login')
+    return redirect('home')
+
