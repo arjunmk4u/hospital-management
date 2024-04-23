@@ -1,14 +1,15 @@
-{% extends "base.html" %}
+{% extends "logged-profile.html" %}
 
 {%block title%} Departments {%endblock%}
 
 {%block content%}
 <div class="fixed-menu"></div>
 <h1 class="mx-auto w-50 text-center"> Departments</h1>
-<hr>
+<hr class="container w-50">
 {% for d in dept%}
-<div class="mx-auto w-50 text-center bg-success text-white my-3 p-3 border border-warning shadow-lg">
+<div class="mx-auto w-50  bg-light text-dark my-3 p-3 border shadow-lg rounded-3">
     <h1>{{d.dept_name}}</h1>
+    <hr>
     <p>{{d.dept_desc}}</p>
     <form action="" method="post">
         {% csrf_token %}

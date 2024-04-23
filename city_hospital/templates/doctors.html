@@ -1,15 +1,15 @@
-{% extends "base.html" %}
+{% extends "logged-profile.html" %}
 
 {%block title%} Doctors {%endblock%}
 
 {%block content%}
 <div class="fixed-menu"></div>
-<h1 class="mx-auto w-50 text-center top-0">Doctors in {{dep}} department</h1>
-<hr>
+<h1 class="container w-50 text-center">Doctors in {{dep}} department</h1>
+<hr class="container w-50">
 <div class="container text-center">
     {% for d in doc%}
 
-    <div class=" card text-center mx-3 my-3 bg-light" style="width: 18rem; display: inline-block;">
+    <div class=" card text-center mx-3 my-3 bg-light shadow" style="width: 18rem; display: inline-block;">
         <img src="{{d.doc_image.url}}" class="card-img-top" alt="...">
         <div class="card-body">
             <form action="" method="post" novalidate>

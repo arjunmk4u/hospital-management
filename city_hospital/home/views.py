@@ -9,11 +9,19 @@ from django.http import JsonResponse
 # Create your views here.
 
 
+def logout_required(view_func):
+    @login_required
+    def _wrapped_view(request):
+        return redirect('home')
+    return _wrapped_view
+
+
+
 def index(request):
     if request.user.is_authenticated:
         return redirect('profile')
     else:
-        return render(request, 'index.html')
+        return render(request,'index.html')
 
 def about(request):
     return render(request, 'about.html')

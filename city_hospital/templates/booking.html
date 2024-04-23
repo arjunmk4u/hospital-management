@@ -1,13 +1,13 @@
-{% extends "base.html" %}
+{% extends "logged-profile.html" %}
 {% load crispy_forms_tags %}
 
 {%block title%} Booking {%endblock%}
 
 {%block content%}
 <div class="fixed-menu"></div>
-<h2 class="text-center">Make an Appoinment</h2>
-<hr>
-<div class="container w-25 bg-info text-center rounded-3 shadow">
+<div class="container w-25 my-5 p-3 border bg-light  rounded-3 shadow-lg">
+    <h2 class="text-center">Make an Appoinment</h2>
+    <hr>
     <form action="" method="post">
         {% csrf_token %}
         <!-- {{form|crispy}} -->
@@ -34,10 +34,9 @@
         
         {%endfor%} -->
         {% for message in messages %}
-        <p>{{message}}</p>
+        <p class="text-danger">{{message}}</p>
         {%endfor%}
-        <input class="btn btn-primary" type="submit">
-        <hr>
+        <input class="btn btn-primary  w-100 my-2" type="submit">
     </form>
 </div>
 {%endblock%}
