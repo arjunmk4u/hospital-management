@@ -44,7 +44,7 @@ def Booking(request):
         form = BookingForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, f"Appoinment Booked")
+            messages.success(request, f"Appointment Booked")
             form = BookingForm()
 
 
