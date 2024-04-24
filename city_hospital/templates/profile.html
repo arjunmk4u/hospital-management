@@ -1,28 +1,66 @@
-{%extends "logged-profile.html" %}
-
-{% block title%} Profile {%endblock%}
-
-{%block content%}
-
-<h3>Profile</h3>
-<h1>Welcome {{request.user}}</h1>
-
-
-<a class="btn btn-primary" href="{% url 'userbookings' %}" role="button">View My bookings</a>
-
-<a class="btn btn-primary rounded-end-3" href="{% url 'booking' %}">Book an appoinment</a>
-
-<div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-      Dropdown button
-    </button>
-    <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="#">Action</a></li>
-      <li><a class="dropdown-item" href="#">Another action</a></li>
-      <li><a class="dropdown-item" href="#">Something else here</a></li>
-    </ul>
+{%extends "logged-profile.html" %} {% block title%} Profile {%endblock%} {%block content%}
+<div class="fixed-menu"></div>
+<div class="bg-secondary w-100 h-50 bg-opacity-10">
+  <div
+    class="container w-70 h-100 d-flex align-items-start flex-column justify-content-center px-5 mx-5"
+  >
+    <h2 class="display-3">Hello, {{request.user}}</h2>
+    <p>Welcome back to MEDICO</p>
+    <p>
+      "Your health is important to us, and we want to ensure that you're feeling
+      your best. Remember, taking care of yourself is the first step to overall
+      well-being. Whether it's a question about your health or you just need
+      someone to talk to, we're here for you. Don't hesitate to reach out if you
+      have any concerns or if there's anything we can assist you with. Take care
+      and stay well!"
+    </p>
+    <a class="btn btn-primary" href="{% url 'userbookings' %}"
+      >View Appoinments</a
+    >
   </div>
-<a href="{% url 'logout' %}">Logout</a>
-
-
+  <div class="container py-3">
+    <div class="row equal-height-row d-flex flex-wrap">
+      <div class="col-md-4 d-flex flex-column justify-content-between">
+        <h2>Our mission</h2>
+        <p>
+          Empowering Health, Enriching Lives: Our mission at MEDICO is to
+          deliver compassionate, high-quality healthcare that enhances the
+          well-being of our community. With a dedication to excellence and
+          innovation, we aim to improve lives and foster a healthier future for
+          all.
+        </p>
+        <p>
+          <a href="{% url 'about' %}" class="btn btn-secondary">Learn More</a>
+        </p>
+      </div>
+      <div class="col-md-4 d-flex flex-column justify-content-between">
+        <h2>Bookings</h2>
+        <p>
+          Additionally, we're delighted to provide online booking services for
+          your convenience. With our user-friendly platform, you can easily
+          schedule appointments from the comfort of your own home. Whether it's
+          for a routine check-up or a specialist consultation.
+        </p>
+        <p>
+          <a href="{% url 'booking' %}" class="btn btn-secondary"
+            >Book an appoinment</a
+          >
+        </p>
+      </div>
+      <div class="col-md-4 d-flex flex-column justify-content-between">
+        <h2>Departments</h2>
+        <p>
+          At CareFirst Hospital, we offer specialized care across a range of
+          departments to meet your healthcare needs. From our Emergency
+          Department to Pediatrics, Obstetrics, Cardiology, and beyond, our
+          expert teams are dedicated to providing compassionate and personalized
+          treatment for every patient.
+        </p>
+        <p>
+          <a href="{% url 'dept' %}" class="btn btn-secondary">Departments</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
 {%endblock%}

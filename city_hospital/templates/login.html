@@ -5,12 +5,12 @@
 
 {%block content%}
 
-<div class="fixed-menu"></div>
-<div class=" container  w-50  ">
+<!-- <div class="fixed-menu"></div> -->
+<div class=" container w-100 h-100 d-flex justify-content-center align-items-center flex-column   ">
 
     <h1>Log in</h1>
-    <hr>
-    <form action="" method="post">
+    <form action="" method="post" class="d-flex w-25 flex-column">
+        <hr>
         {% csrf_token %}
         <!-- {{form|crispy}} -->
 
@@ -27,7 +27,7 @@
         {% for message in messages %}
         <p>{{message}}</p>
         {% endfor %}
-        <input class="btn btn-primary" type="submit" value="Login">
+        <input class="btn btn-primary shadow-lg" type="submit" value="Login">
     </form>
     <h6>Don't have an accound? <a href="{% url 'reg' %}">Register</a></h6>
 
