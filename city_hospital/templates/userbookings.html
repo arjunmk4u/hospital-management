@@ -8,7 +8,7 @@
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">#</th>
+          <th scope="col">No.</th>
           <th scope="col">Name</th>
           <th scope="col">Email</th>
           <th scope="col">Phone</th>
@@ -52,9 +52,10 @@
         {%endfor%}
       </tbody>
     </table>
-    <table class="table container">
+    <!-- <table class="table container">
       <tr>
         <form action="">
+          <td></td>
           <td><input id="pname" type="text" value="{{edit_data.p_name}}" /></td>
           <td><input type="text" value="{{edit_data.p_email}}" /></td>
           <td><input type="text" value="{{edit_data.p_phone}}" /></td>
@@ -63,7 +64,8 @@
           <td><input type="submit" /></td>
         </form>
       </tr>
-    </table>
+    </table> -->
+    <a class="btn btn-secondary" href="{% url 'booking' %}">Add an appointment</a>
   </div>
 </div>
 

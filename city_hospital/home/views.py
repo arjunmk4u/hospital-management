@@ -58,7 +58,7 @@ def Booking(request):
 def Doctors(request):
     dict_doc = {
         "doc" : doctors.objects.all(),
-        "dep" : None
+        "dep" : 'department'
     }
 
     if request.method == 'GET':
@@ -68,6 +68,8 @@ def Doctors(request):
         print(filtered_doc_dept)
         dict_doc['doc'] = filtered_doc_dept
         dict_doc['dep'] = doc_dep_name
+        if doc_dep_name == None:
+            dict_doc['doc'] = doctors.objects.all()
 
     if request.method == "POST":
         doc = request.POST.get("doctor_name")
