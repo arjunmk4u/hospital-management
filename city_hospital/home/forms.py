@@ -1,7 +1,7 @@
 from django import forms
 from .models import booking
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 
 class DateInput(forms.DateInput):
     input_type = 'date'
@@ -40,3 +40,4 @@ class createUser(UserCreationForm):
 class userLogin(forms.Form):
     username = forms.CharField(max_length=120, label="username")
     password = forms.CharField(max_length=255, label="password", widget=forms.PasswordInput())
+    # group = forms.ModelChoiceField(queryset=Group.objects.all(), empty_label="Select Group")

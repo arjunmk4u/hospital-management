@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User,Group
 
 # Create your models here.
 
@@ -11,9 +11,10 @@ class departments(models.Model):
         return self.dept_name
 
 class doctors(models.Model):
-    doc_name = models.CharField(max_length=50)
+    doc_name = models.CharField(max_length=100)
+    group = models.ForeignKey(Group, on_delete=models.CASCADE,default= 1)
     doc_spec = models.CharField(max_length=100)
-    doc_dept = models.ForeignKey(departments, on_delete=models.CASCADE, default=None)
+    doc_dept = models.ForeignKey(departments, on_delete=models.CASCADE)
     doc_image = models.ImageField(upload_to='doctors')
 
     def __str__(self):

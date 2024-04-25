@@ -5,7 +5,9 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
+from django.contrib.auth.models import Group
+from .decorators import groups_required
 # Create your views here.
 
 
@@ -102,9 +104,11 @@ def register(request):
     if request.method =='POST':
         form = createUser(request.POST)
         if form.is_valid():
-            form.save()
-            user = form.cleaned_data.get('username')
-            messages.success(request, f"Account crated for {user}")
+            user = form.save()
+            username = form.cleaned_data.get('username')
+            group = Group.objects.get(name = 'users')
+            user.groups.add(group)
+            messages.success(request, f"Account crated for {username}")
         else:
             error = form.errors.as_ul()
             print(error)
@@ -131,6 +135,7 @@ def login_view(request):
 
 
 @login_required(login_url= '/login')
+@groups_required(['users', 'admin'])
 def profile(request):
     return render(request, "profile.html")
 

@@ -5,18 +5,24 @@
 {%block content%}
 <div class="fixed-menu"></div>
 <h1 class="mx-auto w-50 text-center"> Departments</h1>
-<hr class="container w-50">
-{% for d in dept%}
-<div class="mx-auto w-50  bg-light text-dark my-3 p-3 border shadow-lg rounded-3">
-    <h1>{{d.dept_name}}</h1>
-    <hr>
-    <p>{{d.dept_desc}}</p>
-    <form action="" method="post">
-        {% csrf_token %}
-        <input type="hidden" id="doctor_name" value="{{d.dept_name}}"name="dept_name">
-        <button class="btn btn-primary" type="submit" name="dept_value" value="{{d.id}}">View Doctors</button>
-    </form>
-
+<hr class="container w-100">
+<div class="container w-70 ">
+    {% for d in dept%}
+    <div class="mx-auto w-70  bg-light text-dark my-3 p-3 border shadow-lg rounded-3">
+        <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{d.dept_name}}</h5>
+              <p class="card-text">{{d.dept_desc}}</p>
+              <form action="" method="post">
+                {% csrf_token %}
+                <input type="hidden" id="doctor_name" value="{{d.dept_name}}"name="dept_name">
+                <button class="btn btn-primary" type="submit" name="dept_value" value="{{d.id}}">View Doctors</button>
+            </form>
+    
+            </div>
+          </div>
+        
+    </div>
+    {%endfor%}
 </div>
-{%endfor%}
 {%endblock%}
