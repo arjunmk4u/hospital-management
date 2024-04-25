@@ -16,6 +16,7 @@ urlpatterns = [
     path('userbookings/', views.viewBooking, name='userbookings'),
     path('delete/<int:did>', views.deleteBooking, name='delete'),
     path('edit/<int:eid>', views.editBooking, name='editbooking'),
+    path('docpanel/', views.docpanel, name='docpanel'),
 
 
 ]

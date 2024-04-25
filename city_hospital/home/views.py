@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse, HttpResponse
 from django.contrib.auth.models import Group
 from .decorators import groups_required
+from django.urls import reverse
 # Create your views here.
 
 
@@ -127,7 +128,13 @@ def login_view(request):
             user = authenticate(request, username= username, password= password)
             if user is not None:
                 login(request,user)
-                return redirect('profile')
+                if request.user.is_authenticated:
+                    if request.user.groups.filter(name='admin').exists():
+                        return redirect('admin:index')
+                    elif request.user.groups.filter(name='users').exists():
+                        return redirect('profile')
+                    elif request.user.groups.filter(name='Doctor').exists():
+                        return redirect('docpanel')
             else:
                 messages.info(request, 'Username or password is incorrect')
 
@@ -159,3 +166,8 @@ def logoutUser(request):
     logout(request)
     return redirect('home')
 
+def docpanel(request):
+    doc = doctors.objects.get(doc_name = request.user)
+    data = booking.objects.all().filter(doc_name = doc)
+    print(data)
+    return render(request, 'doctor_panel.html', {'data' : data})
